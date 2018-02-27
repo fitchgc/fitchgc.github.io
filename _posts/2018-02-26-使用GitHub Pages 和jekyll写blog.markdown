@@ -3,7 +3,7 @@ layout: post
 title:  "使用GitHub Pages 和jekyll写blog"
 date: 2018-02-26 23:24
 categories: other
-tags: github jekyll
+tags: git jekyll
 ---
 1. 在https://github.com/new上create new repository, 名字为 username.github.io
 2. 将项目clone到本地
