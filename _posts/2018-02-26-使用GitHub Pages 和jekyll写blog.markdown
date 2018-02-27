@@ -11,6 +11,7 @@ tags: git jekyll
 git clone https://github.com/username/username.github.io
 cd username.github.io
 ```
+<!--more-->
 3. 使用jekyll创建本地blog
 ```
 #需要安装ruby
