@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>博客 - Fitchgc's blog</title>
 <meta name="description" content="Fitchgc's Blog
 ">
-<link rel="canonical" href="/"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="/feed.xml">
+<link rel="canonical" href="http://0.0.0.0:4000/"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -32,7 +32,46 @@
 </header>
 <div class="m-page-main"><div class="m-home">
   <div class="main">
-    <div class="m-post-list"><article><h1><a href="/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">mac os使用nginx配置webdav</a></h1>
+    <div class="m-post-list"><article><h1><a href="/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html">解压cocos creator代码</a></h1>
+          <div class="m-article-content"><div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron</span><span class="dl">"</span><span class="p">).</span><span class="nx">remote</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+
+<span class="c1">// example usage : copyFileOutsideOfElectronAsar("editor", '/Users/user/Downloads/tmp')</span>
+
+<span class="kd">var</span> <span class="nx">copyFileOutsideOfElectronAsar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sourceInAsarArchive</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// file will be copied</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">isFile</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">));</span>
+    <span class="p">}</span>
+    <span class="c1">// dir is browsed</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">isDirectory</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">fileOrFolderName</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="o">||</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdirSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">);</span>
+           <span class="nx">copyFileOutsideOfElectronAsar</span><span class="p">(</span> <span class="nx">sourceInAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span> <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>将此代码复制到cocos creator的console中, 然后执行</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">copyFileOutsideOfElectronAsar</span><span class="p">(</span><span class="dl">""</span><span class="p">,</span> <span class="dl">'</span><span class="s1">/Users/user/Downloads/tmp</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>在console中输入app.getPath(“temp”)可获取路径</p>
+
+</div><a href="/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html">点我阅读更多...</a><div class="m-article-data clearfix"><meta itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Fitchgc"/></meta><ul class="tag-wrapper"><li>
+          <a class="pill-button" href="/all.html?tag=dev">dev</a>
+        </li><li>
+          <a class="pill-button" href="/all.html?tag=game">game</a>
+        </li><li>
+          <a class="pill-button" href="/all.html?tag=cocos">cocos</a>
+        </li></ul><div class="other-wrapper"><div class="date-wrapper"><span class="article-meta">2020年 04月22日</span></div>
+  </div>
+</div>
+</article><article><h1><a href="/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">mac os使用nginx配置webdav</a></h1>
           <div class="m-article-content"><ol>
   <li>使用htpasswd创建用户名密码</li>
 </ol>
@@ -144,7 +183,7 @@
   <div class="main">
     <aside><div class="follow-me"><ul itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Fitchgc">
-    <link itemprop="url" href="/"><li title="在 Twitter 上关注我。">
+    <link itemprop="url" href="http://0.0.0.0:4000/"><li title="在 Twitter 上关注我。">
         <div class="floating-action-round-button twitter">
           <a itemprop="sameAs" href="https://twitter.com/zhlccsh" target="_blank">
             <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

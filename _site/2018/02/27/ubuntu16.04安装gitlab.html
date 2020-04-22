@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="zh">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>sketch画扇形 - Fitchgc's blog</title>
-<meta name="description" content="  画一个正圆  双击进入锚点编辑模式  删除下方锚点, 将其他锚点都设置为Disconneted  将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)  将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)  将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一...">
-<link rel="canonical" href="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>ubuntu16.04安装gitlab(清华镜像) - Fitchgc's blog</title>
+<meta name="description" content="  安装依赖包，运行如下命令    sudo apt-get install curl openssh-server ca-certificates postfix      ">
+<link rel="canonical" href="http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -37,32 +37,71 @@
 		<div class="col-1">
 			<article itemscope itemtype="http://schema.org/BlogPosting">
 				<meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
-				<header class="main-header"><h1 itemprop="headline" itemprop="name headline">sketch画扇形</h1><div class="m-article-data clearfix"><meta itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Fitchgc"/></meta><ul class="tag-wrapper"><li>
-          <a class="pill-button" href="/all.html?tag=sketch">sketch</a>
-        </li></ul><div class="other-wrapper"><div class="date-wrapper"><time class="article-meta" datetime="2018-04-25T09:07:00+08:00"
-          itemprop="datePublished">2018年 04月25日
+				<header class="main-header"><h1 itemprop="headline" itemprop="name headline">ubuntu16.04安装gitlab(清华镜像)</h1><div class="m-article-data clearfix"><meta itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Fitchgc"/></meta><ul class="tag-wrapper"><li>
+          <a class="pill-button" href="/all.html?tag=config">config</a>
+        </li><li>
+          <a class="pill-button" href="/all.html?tag=git">git</a>
+        </li></ul><div class="other-wrapper"><div class="date-wrapper"><time class="article-meta" datetime="2018-02-27T00:00:00+08:00"
+          itemprop="datePublished">2018年 02月27日
         </time></div>
   </div>
 </div>
 </header>
 				<div class="m-article-content js-article-content" itemprop="articleBody"><ol>
-  <li>画一个正圆</li>
-  <li>双击进入锚点编辑模式</li>
-  <li>删除下方锚点, 将其他锚点都设置为Disconneted</li>
-  <li>将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)</li>
-  <li>将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)</li>
-  <li>将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方</li>
+  <li>安装依赖包，运行如下命令
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install curl openssh-server ca-certificates postfix
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>首先信任 GitLab 的 GPG 公钥:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null
+</code></pre></div>    </div>
+  </li>
+  <li>添加源
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
+#如果提示deb: command not found
+vi /etc/apt/sources.list
+#然后将deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main添加到文件中
+</code></pre></div>    </div>
+  </li>
+  <li>安装 gitlab-ce:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install gitlab-ce
+</code></pre></div>    </div>
+  </li>
+  <li>安装完成之后启动gitlab.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl reconfigure
+</code></pre></div>    </div>
+  </li>
+  <li>打开 sshd 和 postfix 服务
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service sshd start
+service postfix start
+</code></pre></div>    </div>
+  </li>
+  <li>最后，可通过输入下面的命令，检查GitLab是否安装成功并正常运行。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl status
+</code></pre></div>    </div>
+    <p>在浏览器中打开：http://127.0.0.1。
+首次使用时，GitLab会提示设置密码，设置后就可以正常使用了。</p>
+  </li>
+  <li>配置域名
+编辑 /etc/gitlab/gitlab.rb,
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>external_url "http://gitlab.example.com" #替换为你自己的地址
+</code></pre></div>    </div>
+    <p>运行如下命令, 使修改生效。</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl reconfigure
+</code></pre></div>    </div>
+  </li>
 </ol>
-
 </div>
-				<footer><meta itemprop="dateModified" content="2018-04-25T09:07:00+08:00"><div class="article-license"><div class="m-license"><div class="clearfix"><p>本文遵守 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 许可协议。</p><a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+				<footer><meta itemprop="dateModified" content="2018-02-27T00:00:00+08:00"><div class="article-license"><div class="m-license"><div class="clearfix"><p>本文遵守 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 许可协议。</p><a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
       <img alt="Creative Commons License" src="/assets/images/license-cc4.png" />
     </a><p>欢迎转载，转载需注明出处，且禁止用于商业目的。</p>
   </div>
 </div></div>
 				</footer>
 			</article>
-			<div class="article-previous-next clearfix"><div class="article-previous"><span>上篇</span><a href="/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">mac os使用nginx配置webdav</a></div><div class="article-next"><span>下篇</span><a href="/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html">通过自定义事件在小程序页面间传值</a></div></div></div>
+			<div class="article-previous-next clearfix"><div class="article-previous"><span>上篇</span><a href="/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html">通过自定义事件在小程序页面间传值</a></div><div class="article-next"><span>下篇</span><a href="/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html">使用GitHub Pages 和jekyll写blog</a></div></div></div>
 	</div>
 </div><script src="//cdn.bootcss.com/toc/0.3.2/toc.min.js"></script>
 <script type="text/javascript">

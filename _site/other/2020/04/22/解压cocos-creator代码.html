@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="zh">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>sketch画扇形 - Fitchgc's blog</title>
-<meta name="description" content="  画一个正圆  双击进入锚点编辑模式  删除下方锚点, 将其他锚点都设置为Disconneted  将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)  将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)  将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一...">
-<link rel="canonical" href="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>解压cocos creator代码 - Fitchgc's blog</title>
+<meta name="description" content="var fs = require("fs");var app = require("electron").remote.app;// example usage : copyFileOutsideOfElectronAsar("editor", '/Users/user/Downloads/tmp')var co...">
+<link rel="canonical" href="http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -37,32 +37,56 @@
 		<div class="col-1">
 			<article itemscope itemtype="http://schema.org/BlogPosting">
 				<meta itemprop="mainEntityOfPage" itemscope itemType="https://schema.org/WebPage"/>
-				<header class="main-header"><h1 itemprop="headline" itemprop="name headline">sketch画扇形</h1><div class="m-article-data clearfix"><meta itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Fitchgc"/></meta><ul class="tag-wrapper"><li>
-          <a class="pill-button" href="/all.html?tag=sketch">sketch</a>
-        </li></ul><div class="other-wrapper"><div class="date-wrapper"><time class="article-meta" datetime="2018-04-25T09:07:00+08:00"
-          itemprop="datePublished">2018年 04月25日
+				<header class="main-header"><h1 itemprop="headline" itemprop="name headline">解压cocos creator代码</h1><div class="m-article-data clearfix"><meta itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Fitchgc"/></meta><ul class="tag-wrapper"><li>
+          <a class="pill-button" href="/all.html?tag=dev">dev</a>
+        </li><li>
+          <a class="pill-button" href="/all.html?tag=game">game</a>
+        </li><li>
+          <a class="pill-button" href="/all.html?tag=cocos">cocos</a>
+        </li></ul><div class="other-wrapper"><div class="date-wrapper"><time class="article-meta" datetime="2020-04-22T17:02:00+08:00"
+          itemprop="datePublished">2020年 04月22日
         </time></div>
   </div>
 </div>
 </header>
-				<div class="m-article-content js-article-content" itemprop="articleBody"><ol>
-  <li>画一个正圆</li>
-  <li>双击进入锚点编辑模式</li>
-  <li>删除下方锚点, 将其他锚点都设置为Disconneted</li>
-  <li>将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)</li>
-  <li>将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)</li>
-  <li>将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方</li>
-</ol>
+				<div class="m-article-content js-article-content" itemprop="articleBody"><div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron</span><span class="dl">"</span><span class="p">).</span><span class="nx">remote</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+
+<span class="c1">// example usage : copyFileOutsideOfElectronAsar("editor", '/Users/user/Downloads/tmp')</span>
+
+<span class="kd">var</span> <span class="nx">copyFileOutsideOfElectronAsar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sourceInAsarArchive</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// file will be copied</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">isFile</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">));</span>
+    <span class="p">}</span>
+    <span class="c1">// dir is browsed</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">isDirectory</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">fileOrFolderName</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="o">||</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdirSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">);</span>
+           <span class="nx">copyFileOutsideOfElectronAsar</span><span class="p">(</span> <span class="nx">sourceInAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span> <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>将此代码复制到cocos creator的console中, 然后执行</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">copyFileOutsideOfElectronAsar</span><span class="p">(</span><span class="dl">""</span><span class="p">,</span> <span class="dl">'</span><span class="s1">/Users/user/Downloads/tmp</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>在console中输入app.getPath(“temp”)可获取路径</p>
 
 </div>
-				<footer><meta itemprop="dateModified" content="2018-04-25T09:07:00+08:00"><div class="article-license"><div class="m-license"><div class="clearfix"><p>本文遵守 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 许可协议。</p><a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+				<footer><meta itemprop="dateModified" content="2020-04-22T17:02:00+08:00"><div class="article-license"><div class="m-license"><div class="clearfix"><p>本文遵守 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> 许可协议。</p><a class="license" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
       <img alt="Creative Commons License" src="/assets/images/license-cc4.png" />
     </a><p>欢迎转载，转载需注明出处，且禁止用于商业目的。</p>
   </div>
 </div></div>
 				</footer>
 			</article>
-			<div class="article-previous-next clearfix"><div class="article-previous"><span>上篇</span><a href="/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">mac os使用nginx配置webdav</a></div><div class="article-next"><span>下篇</span><a href="/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html">通过自定义事件在小程序页面间传值</a></div></div></div>
+			<div class="article-previous-next clearfix"><div class="article-next"><span>下篇</span><a href="/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">mac os使用nginx配置webdav</a></div></div></div>
 	</div>
 </div><script src="//cdn.bootcss.com/toc/0.3.2/toc.min.js"></script>
 <script type="text/javascript">

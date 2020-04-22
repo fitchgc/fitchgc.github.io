@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>归档 - Fitchgc's blog</title>
 <meta name="description" content="Fitchgc's Blog
 ">
-<link rel="canonical" href="/all.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="/feed.xml">
+<link rel="canonical" href="http://0.0.0.0:4000/all.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://0.0.0.0:4000/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -35,11 +35,23 @@
   <ul>
     <li>
       <button type="button" class="js-article-tag js-tag-show-all all pill-button" onclick="tagSelect('')">Show All
-        <div class="tag-count">5</div>
+        <div class="tag-count">6</div>
       </button>
-    </li><li><button type="button" class="js-article-tag tag-2 pill-button"
+    </li><li><button type="button" class="js-article-tag tag-1 pill-button"
+        data-tag="cocos" onclick="tagSelect('cocos')">
+          <span>cocos</span><div class="tag-count">1</div>
+        </button>
+      </li><li><button type="button" class="js-article-tag tag-2 pill-button"
         data-tag="config" onclick="tagSelect('config')">
           <span>config</span><div class="tag-count">2</div>
+        </button>
+      </li><li><button type="button" class="js-article-tag tag-1 pill-button"
+        data-tag="dev" onclick="tagSelect('dev')">
+          <span>dev</span><div class="tag-count">1</div>
+        </button>
+      </li><li><button type="button" class="js-article-tag tag-1 pill-button"
+        data-tag="game" onclick="tagSelect('game')">
+          <span>game</span><div class="tag-count">1</div>
         </button>
       </li><li><button type="button" class="js-article-tag tag-2 pill-button"
         data-tag="git" onclick="tagSelect('git')">
@@ -72,7 +84,12 @@
       </li></ul>
 </div>
 <!--group by year: http://stackoverflow.com/questions/19086284/jekyll-liquid-templating-how-to-group-blog-posts-by-year-->
-    <section class="js-year-wrapper"><section id="2018">
+    <section class="js-year-wrapper"><section id="2020">
+          <h2 class="year-title" id="year-2020">2020</h2>
+          <ul class="year-list"><li class="js-post-block" data-tag="dev,game,cocos">
+          <span class="post-date">04月22日</span>
+          <a class="post-link" href="/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html">解压cocos creator代码</a>
+        </li></ul></section><section id="2018">
           <h2 class="year-title" id="year-2018">2018</h2>
           <ul class="year-list"><li class="js-post-block" data-tag="nginx,config,osx">
           <span class="post-date">05月03日</span>
@@ -192,7 +209,7 @@
   <div class="main">
     <aside><div class="follow-me"><ul itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Fitchgc">
-    <link itemprop="url" href="/"><li title="在 Twitter 上关注我。">
+    <link itemprop="url" href="http://0.0.0.0:4000/"><li title="在 Twitter 上关注我。">
         <div class="floating-action-round-button twitter">
           <a itemprop="sameAs" href="https://twitter.com/zhlccsh" target="_blank">
             <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
