@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>使用GitHub Pages 和jekyll写blog - Fitchgc's blog</title>
 <meta name="description" content="  在https://github.com/new上create new repository, 名字为 username.github.io  将项目clone到本地    git clone https://github.com/username/username.github.iocd username.g...">
-<link rel="canonical" href="http://localhost:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://localhost:4000/feed.xml">
+<link rel="canonical" href="/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -50,21 +50,21 @@
 				<div class="m-article-content js-article-content" itemprop="articleBody"><ol>
   <li>在https://github.com/new上create new repository, 名字为 username.github.io</li>
   <li>将项目clone到本地
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/username.github.io
-cd username.github.io
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/username.github.io
+<span class="nb">cd </span>username.github.io
 </code></pre></div>    </div>
     <!--more-->
   </li>
   <li>使用jekyll创建本地blog
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#需要安装ruby
-sudo gem install jekyll
-#创建基本的项目
-jekyll new .
-#如果目录非空,
-jekyll new . --force
-#启动jekyll服务
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#需要安装ruby</span>
+<span class="nb">sudo </span>gem <span class="nb">install </span>jekyll
+<span class="c">#创建基本的项目</span>
+jekyll new <span class="nb">.</span>
+<span class="c">#如果目录非空,</span>
+jekyll new <span class="nb">.</span> <span class="nt">--force</span>
+<span class="c">#启动jekyll服务</span>
 jekyll serve
-#通过http://localhost:4000访问页面
+<span class="c">#通过http://localhost:4000访问页面</span>
 </code></pre></div>    </div>
     <p>jekyll serve启动参数
 –livereload 当有改动时候自动刷新页面
@@ -75,12 +75,12 @@ jekyll serve
   </li>
   <li>在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown</li>
   <li>文件内容如下:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: post
-title:  "blog标题"
-date: 发表日期
-categories: other
----
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">blog标题"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">发表日期</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">other</span>
+<span class="nn">---</span>
 博客内容, 支持markdown
 </code></pre></div>    </div>
     <p>layout: post 表示使用_layouts下的post模板来显示这篇blog
@@ -209,7 +209,7 @@ categories为分类, 可以使用site.posts.categories这样的标签来引用�
   <div class="main">
     <aside><div class="follow-me"><ul itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Fitchgc">
-    <link itemprop="url" href="http://localhost:4000/"><li title="在 Twitter 上关注我。">
+    <link itemprop="url" href="/"><li title="在 Twitter 上关注我。">
         <div class="floating-action-round-button twitter">
           <a itemprop="sameAs" href="https://twitter.com/zhlccsh" target="_blank">
             <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>通过自定义事件在小程序页面间传值 - Fitchgc's blog</title>
 <meta name="description" content="  创建event.js    let events = {}export default {  on (name, self, cb) { let cbArr = events[name] if (Array.isArray(cbArr)) {   cbArr.push({self, cb}) } else {...">
-<link rel="canonical" href="http://localhost:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="http://localhost:4000/feed.xml">
+<link rel="canonical" href="/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html"><link rel="alternate" type="application/rss+xml" title="Fitchgc's blog" href="/feed.xml">
 <!-- for Safari on iOS https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/app-icon/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/icon-180x180.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/images/logo/icon-167x167.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/images/logo/icon-152x152.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/images/logo/icon-120x120.png"><link rel="shortcut icon" href="/assets/images/logo/icon-120x120.png">
 <!-- for Chrome on Android https://developer.chrome.com/multidevice/android/installtohomescreen -->
 <meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/assets/images/logo/icon-192x192.png">
@@ -80,23 +80,23 @@
     <!--more-->
   </li>
   <li>父页面添加事件监听方法
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">event</span> <span class="k">from</span> <span class="s1">'event'</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">event</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">event</span><span class="dl">'</span>
 <span class="c1">// onLoad方法中添加事件监听</span>
 <span class="nx">onLoad</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
   <span class="p">...</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="p">...</span>
 <span class="p">}</span>
 <span class="c1">// onUnload方法中移除事件监听</span>
 <span class="nx">onUnload</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
   <li>子页面中触发事件
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">event</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="p">{})</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">event</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="p">{})</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -222,7 +222,7 @@
   <div class="main">
     <aside><div class="follow-me"><ul itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Fitchgc">
-    <link itemprop="url" href="http://localhost:4000/"><li title="在 Twitter 上关注我。">
+    <link itemprop="url" href="/"><li title="在 Twitter 上关注我。">
         <div class="floating-action-round-button twitter">
           <a itemprop="sameAs" href="https://twitter.com/zhlccsh" target="_blank">
             <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
