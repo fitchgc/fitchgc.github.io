@@ -1,0 +1,40 @@
+<ol>
+  <li>在https://github.com/new上create new repository, 名字为 username.github.io</li>
+  <li>将项目clone到本地
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/username.github.io
+cd username.github.io
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>使用jekyll创建本地blog
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#需要安装ruby
+sudo gem install jekyll
+#创建基本的项目
+jekyll new .
+#如果目录非空,
+jekyll new . --force
+#启动jekyll服务
+jekyll serve
+#通过http://localhost:4000访问页面
+</code></pre></div>    </div>
+    <p>jekyll serve启动参数
+–livereload 当有改动时候自动刷新页面
+–incremental Incremental will perform a partial build in order to reduce regeneration time.
+–detach 和jekyll serve类似, 但和当前terminal分离, 如果需要关闭服务, 输入kill -9 PID
+–no-watch not watch for changes
+<a href="https://jekyllrb.com/docs/quickstart/">jekyll的文档</a></p>
+  </li>
+  <li>在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown</li>
+  <li>文件内容如下:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+title:  "blog标题"
+date: 发表日期
+categories: other
+---
+博客内容, 支持markdown
+</code></pre></div>    </div>
+    <p>layout: post 表示使用_layouts下的post模板来显示这篇blog
+categories为分类, 可以使用site.posts.categories这样的标签来引用指定分类的博客</p>
+  </li>
+</ol>

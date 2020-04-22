@@ -7,13 +7,13 @@ tags: git jekyll
 ---
 1. 在https://github.com/new上create new repository, 名字为 username.github.io
 2. 将项目clone到本地
-```
+```bash
 git clone https://github.com/username/username.github.io
 cd username.github.io
 ```
 <!--more-->
 3. 使用jekyll创建本地blog
-```
+```bash
 #需要安装ruby
 sudo gem install jekyll
 #创建基本的项目
@@ -32,7 +32,7 @@ jekyll serve启动参数
 [jekyll的文档](https://jekyllrb.com/docs/quickstart/)
 4. 在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown
 5. 文件内容如下:
-```
+```markdown
 ---
 layout: post
 title:  "blog标题"

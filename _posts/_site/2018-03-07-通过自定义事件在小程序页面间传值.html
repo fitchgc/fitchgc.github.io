@@ -1,0 +1,53 @@
+<ol>
+  <li>创建event.js
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">events</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">on</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">cbArr</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">}]</span>
+ <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">remove</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nb">self</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cbArr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(({</span><span class="nx">target</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">target</span> <span class="o">!==</span> <span class="nb">self</span>
+   <span class="p">})</span>
+ <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">emit</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">cbArr</span><span class="p">.</span><span class="nx">map</span><span class="p">(({</span><span class="nx">target</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nx">cb</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+   <span class="p">})</span>
+ <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>父页面添加事件监听方法
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">event</span> <span class="k">from</span> <span class="s1">'event'</span>
+<span class="c1">// onLoad方法中添加事件监听</span>
+<span class="nx">onLoad</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+ <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">// onUnload方法中移除事件监听</span>
+<span class="nx">onUnload</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>子页面中触发事件
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">event</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'customer-event'</span><span class="p">,</span> <span class="p">{})</span>
+</code></pre></div>    </div>
+  </li>
+</ol>

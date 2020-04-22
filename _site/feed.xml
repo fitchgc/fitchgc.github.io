@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-05-03T12:02:24+08:00</updated><id>http://localhost:4000/</id><title type="html">Fitchgc’s blog</title><subtitle>Fitchgc's Blog
+</subtitle><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><entry><title type="html">mac os使用nginx配置webdav</title><link href="http://localhost:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html" rel="alternate" type="text/html" title="mac os使用nginx配置webdav" /><published>2018-05-03T11:58:00+08:00</published><updated>2018-05-03T11:58:00+08:00</updated><id>http://localhost:4000/other/2018/05/03/mac%20os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav</id><content type="html" xml:base="http://localhost:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">&lt;ol&gt;
+  &lt;li&gt;使用htpasswd创建用户名密码&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;htpasswd &lt;span class=&quot;nt&quot;&gt;-bc&lt;/span&gt; .webdav username password
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!--more--&gt;
+&lt;ol&gt;
+  &lt;li&gt;安装带有webdav module的nginx
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap denji/nginx
+brew &lt;span class=&quot;nb&quot;&gt;unlink &lt;/span&gt;nginx  ［此步骤是因为此前已经安装了nginx］
+brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx-full &lt;span class=&quot;nt&quot;&gt;--with-webdav&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--with-dav-ext-module&lt;/span&gt;
+brew &lt;span class=&quot;nb&quot;&gt;link &lt;/span&gt;nginx-full
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;修改nginx配置文件
+  osx上使用brew安装的nginx配置在/usr/local/etc/nginx/nginx.conf
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+ listen 10000;
+ error_page 404 /404;
+ error_page 503 /503;
+
+ location / {
+     root /Users/username/Documents/webdav;
+     autoindex on;
+     dav_methods PUT DELETE MKCOL COPY MOVE;
+     dav_ext_methods PROPFIND OPTIONS;
+     create_full_put_path on;
+     dav_access user:rw group:r all:r;
+     auth_basic &quot;Authorized Users Only&quot;;
+     auth_basic_user_file /Users/username/.webdav;
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="nginx" /><category term="config" /><category term="osx" /><summary type="html">使用htpasswd创建用户名密码 htpasswd -bc .webdav username password</summary></entry><entry><title type="html">sketch画扇形</title><link href="http://localhost:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html" rel="alternate" type="text/html" title="sketch画扇形" /><published>2018-04-25T09:07:00+08:00</published><updated>2018-04-25T09:07:00+08:00</updated><id>http://localhost:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2</id><content type="html" xml:base="http://localhost:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html">&lt;ol&gt;
+  &lt;li&gt;画一个正圆&lt;/li&gt;
+  &lt;li&gt;双击进入锚点编辑模式&lt;/li&gt;
+  &lt;li&gt;删除下方锚点, 将其他锚点都设置为Disconneted&lt;/li&gt;
+  &lt;li&gt;将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)&lt;/li&gt;
+  &lt;li&gt;将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)&lt;/li&gt;
+  &lt;li&gt;将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="sketch" /><summary type="html">画一个正圆 双击进入锚点编辑模式 删除下方锚点, 将其他锚点都设置为Disconneted 将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线) 将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线) 将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方</summary></entry><entry><title type="html">通过自定义事件在小程序页面间传值</title><link href="http://localhost:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html" rel="alternate" type="text/html" title="通过自定义事件在小程序页面间传值" /><published>2018-03-07T16:14:00+08:00</published><updated>2018-03-07T16:14:00+08:00</updated><id>http://localhost:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC</id><content type="html" xml:base="http://localhost:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html">&lt;ol&gt;
+  &lt;li&gt;创建event.js
+    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;!--more--&gt;
+  &lt;/li&gt;
+  &lt;li&gt;父页面添加事件监听方法
+    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'event'&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// onLoad方法中添加事件监听&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;onLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'customer-event'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// onUnload方法中移除事件监听&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;onUnload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'customer-event'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;子页面中触发事件
+    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'customer-event'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="weapp" /><category term="node" /><summary type="html">创建event.js let events = {} export default { on (name, self, cb) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.push({self, cb}) } else { events[name] = [{self, cb}] } }, remove (name, self) { let cbArr = events[name] if (Array.isArray(cbArr)) { events[name] = cbArr.filter(({target, cb}) =&amp;gt; { return target !== self }) } }, emit (name, data) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.map(({target, cb}) =&amp;gt; { cb.call(target, data) }) } } }</summary></entry><entry><title type="html">ubuntu16.04安装gitlab(清华镜像)</title><link href="http://localhost:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html" rel="alternate" type="text/html" title="ubuntu16.04安装gitlab(清华镜像)" /><published>2018-02-27T00:00:00+08:00</published><updated>2018-02-27T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab</id><content type="html" xml:base="http://localhost:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html">&lt;ol&gt;
+  &lt;li&gt;安装依赖包，运行如下命令
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install curl openssh-server ca-certificates postfix
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;!--more--&gt;
+  &lt;/li&gt;
+  &lt;li&gt;首先信任 GitLab 的 GPG 公钥:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl https://packages.gitlab.com/gpg.key 2&amp;gt; /dev/null | sudo apt-key add - &amp;amp;&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;添加源
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
+#如果提示deb: command not found
+vi /etc/apt/sources.list
+#然后将deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main添加到文件中
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;安装 gitlab-ce:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install gitlab-ce
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;安装完成之后启动gitlab.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl reconfigure
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;打开 sshd 和 postfix 服务
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;service sshd start
+service postfix start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;最后，可通过输入下面的命令，检查GitLab是否安装成功并正常运行。
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;在浏览器中打开：http://127.0.0.1。
+首次使用时，GitLab会提示设置密码，设置后就可以正常使用了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;配置域名
+编辑 /etc/gitlab/gitlab.rb,
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;external_url &quot;http://gitlab.example.com&quot; #替换为你自己的地址
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;运行如下命令, 使修改生效。&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl reconfigure
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="config" /><category term="git" /><summary type="html">安装依赖包，运行如下命令 sudo apt-get install curl openssh-server ca-certificates postfix</summary></entry><entry><title type="html">使用GitHub Pages 和jekyll写blog</title><link href="http://localhost:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html" rel="alternate" type="text/html" title="使用GitHub Pages 和jekyll写blog" /><published>2018-02-26T23:24:00+08:00</published><updated>2018-02-26T23:24:00+08:00</updated><id>http://localhost:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub%20Pages%20%E5%92%8Cjekyll%E5%86%99blog</id><content type="html" xml:base="http://localhost:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html">&lt;ol&gt;
+  &lt;li&gt;在https://github.com/new上create new repository, 名字为 username.github.io&lt;/li&gt;
+  &lt;li&gt;将项目clone到本地
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/username/username.github.io
+cd username.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;!--more--&gt;
+  &lt;/li&gt;
+  &lt;li&gt;使用jekyll创建本地blog
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#需要安装ruby
+sudo gem install jekyll
+#创建基本的项目
+jekyll new .
+#如果目录非空,
+jekyll new . --force
+#启动jekyll服务
+jekyll serve
+#通过http://localhost:4000访问页面
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;jekyll serve启动参数
+–livereload 当有改动时候自动刷新页面
+–incremental Incremental will perform a partial build in order to reduce regeneration time.
+–detach 和jekyll serve类似, 但和当前terminal分离, 如果需要关闭服务, 输入kill -9 PID
+–no-watch not watch for changes
+&lt;a href=&quot;https://jekyllrb.com/docs/quickstart/&quot;&gt;jekyll的文档&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown&lt;/li&gt;
+  &lt;li&gt;文件内容如下:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: post
+title:  &quot;blog标题&quot;
+date: 发表日期
+categories: other
+---
+博客内容, 支持markdown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;layout: post 表示使用_layouts下的post模板来显示这篇blog
+categories为分类, 可以使用site.posts.categories这样的标签来引用指定分类的博客&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="git" /><category term="jekyll" /><summary type="html">在https://github.com/new上create new repository, 名字为 username.github.io 将项目clone到本地 git clone https://github.com/username/username.github.io cd username.github.io</summary></entry></feed>
