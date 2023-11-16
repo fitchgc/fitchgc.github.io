@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title:  "mac os使用nginx配置webdav"
 date: 2018-05-03 11:58
 categories: other

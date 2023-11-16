@@ -1,49 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-10-21T14:36:07+08:00</updated><id>http://0.0.0.0:4000/</id><title type="html">Fitchgc’s blog</title><subtitle>Fitchgc's Blog
-</subtitle><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><entry><title type="html">解压cocos creator代码</title><link href="http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html" rel="alternate" type="text/html" title="解压cocos creator代码" /><published>2020-04-22T17:02:00+08:00</published><updated>2020-04-22T17:02:00+08:00</updated><id>http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos%20creator%E4%BB%A3%E7%A0%81</id><content type="html" xml:base="http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html">&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;electron&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2023-11-16T07:45:35+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Fitchgc’s blog</title><subtitle>Fitchgc&apos;s Blog
+</subtitle><author><name>Fitchgc</name></author><entry><title type="html">ubuntu设置ftp server, docker模式</title><link href="http://0.0.0.0:4000/other/2020/10/21/ubuntu%E8%AE%BE%E7%BD%AEftp-server,-docker%E6%A8%A1%E5%BC%8F.html" rel="alternate" type="text/html" title="ubuntu设置ftp server, docker模式" /><published>2020-10-21T14:39:00+00:00</published><updated>2020-10-21T14:39:00+00:00</updated><id>http://0.0.0.0:4000/other/2020/10/21/ubuntu%E8%AE%BE%E7%BD%AEftp%20server,%20docker%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://0.0.0.0:4000/other/2020/10/21/ubuntu%E8%AE%BE%E7%BD%AEftp-server,-docker%E6%A8%A1%E5%BC%8F.html"><![CDATA[<p>创建启动脚本</p>
 
-&lt;span class=&quot;c1&quot;&gt;// example usage : copyFileOutsideOfElectronAsar(&quot;editor&quot;, '/Users/user/Downloads/tmp')&lt;/span&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-v</span> /root/code/ftp:/home/vsftpd <span class="nt">-p</span> 20:20 <span class="nt">-p</span> 21:21 <span class="nt">-p</span> 21100-21110:21100-21110 <span class="nt">-e</span> <span class="nv">PASV_MIN_PORT</span><span class="o">=</span>21100 <span class="nt">-e</span> <span class="nv">PASV_MAX_PORT</span><span class="o">=</span>21110 <span class="nt">-e</span> <span class="nv">FTP_USER</span><span class="o">=</span>upload <span class="nt">-e</span> <span class="nv">FTP_PASS</span><span class="o">=</span>7654321Hy <span class="nt">-e</span> <span class="nv">PASV_ADDRESS</span><span class="o">=</span>0.0.0.0 <span class="nt">--restart</span><span class="o">=</span>always <span class="nt">--net</span> mnet <span class="nt">--ip</span><span class="o">=</span>188.88.0.9 <span class="nt">--name</span> vsftpd fauria/vsftpd
 
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;copyFileOutsideOfElectronAsar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;destOutsideAsarArchive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;existsSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAppPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+<span class="c"># 挂载宿主机的/root/code/ftp目录至容器的/home/vsftpd</span>
+<span class="nt">-v</span> /root/code/ftp:/home/vsftpd
+<span class="c"># 暴露容器的相关端口给宿主机</span>
+<span class="nt">-p</span> 20:20 <span class="nt">-p</span> 21:21 <span class="nt">-p</span> 21100-21110:21100-21110
+<span class="c"># 设置passive mode的port range</span>
+<span class="nt">-e</span> <span class="nv">PASV_MIN_PORT</span><span class="o">=</span>21100 <span class="nt">-e</span> <span class="nv">PASV_MAX_PORT</span><span class="o">=</span>21110
+<span class="c"># 设置ftp的用户名, 密码</span>
+<span class="nt">-e</span> <span class="nv">FTP_USER</span><span class="o">=</span>upload <span class="nt">-e</span> <span class="nv">FTP_PASS</span><span class="o">=</span>7654321Hy
+<span class="c"># 设置绑定的ip</span>
+<span class="nt">-e</span> <span class="nv">PASV_ADDRESS</span><span class="o">=</span>0.0.0.0 
+<span class="c"># 加入到自定义网络</span>
+<span class="nt">--net</span> mnet <span class="nt">--ip</span><span class="o">=</span>188.88.0.9
+</code></pre></div></div>
 
-    &lt;span class=&quot;c1&quot;&gt;// file will be copied&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAppPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeFileSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;destOutsideAsarArchive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFileSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAppPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// dir is browsed&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAppPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isDirectory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readdirSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAppPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fileOrFolderName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;existsSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;destOutsideAsarArchive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mkdirSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;destOutsideAsarArchive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-           &lt;span class=&quot;nx&quot;&gt;copyFileOutsideOfElectronAsar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sourceInAsarArchive&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fileOrFolderName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;destOutsideAsarArchive&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fileOrFolderName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+<p>添加新的ftp帐号</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> vsftpd bash
+<span class="nb">mkdir</span> /home/vsftpd/myuser
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"myuser</span><span class="se">\n</span><span class="s2">mypass"</span> <span class="o">&gt;&gt;</span> /etc/vsftpd/virtual_users.txt
+/usr/bin/db_load <span class="nt">-T</span> <span class="nt">-t</span> <span class="nb">hash</span> <span class="nt">-f</span> /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+<span class="nb">exit
+</span>docker restart vsftpd
+</code></pre></div></div>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="dev" /><category term="ubuntu" /><category term="docker" /><summary type="html"><![CDATA[创建启动脚本 docker run -d -v /root/code/ftp:/home/vsftpd -p 20:20 -p 21:21 -p 21100-21110:21100-21110 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 -e FTP_USER=upload -e FTP_PASS=7654321Hy -e PASV_ADDRESS=0.0.0.0 --restart=always --net mnet --ip=188.88.0.9 --name vsftpd fauria/vsftpd # 挂载宿主机的/root/code/ftp目录至容器的/home/vsftpd -v /root/code/ftp:/home/vsftpd # 暴露容器的相关端口给宿主机 -p 20:20 -p 21:21 -p 21100-21110:21100-21110 # 设置passive mode的port range -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 # 设置ftp的用户名, 密码 -e FTP_USER=upload -e FTP_PASS=7654321Hy # 设置绑定的ip -e PASV_ADDRESS=0.0.0.0 # 加入到自定义网络 --net mnet --ip=188.88.0.9 添加新的ftp帐号 docker exec -i -t vsftpd bash mkdir /home/vsftpd/myuser echo -e "myuser\nmypass" &gt;&gt; /etc/vsftpd/virtual_users.txt /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db exit docker restart vsftpd]]></summary></entry><entry><title type="html">解压cocos creator代码</title><link href="http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html" rel="alternate" type="text/html" title="解压cocos creator代码" /><published>2020-04-22T17:02:00+00:00</published><updated>2020-04-22T17:02:00+00:00</updated><id>http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos%20creator%E4%BB%A3%E7%A0%81</id><content type="html" xml:base="http://0.0.0.0:4000/other/2020/04/22/%E8%A7%A3%E5%8E%8Bcocos-creator%E4%BB%A3%E7%A0%81.html"><![CDATA[<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron</span><span class="dl">"</span><span class="p">).</span><span class="nx">remote</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;将此代码复制到cocos creator的console中, 然后执行&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;copyFileOutsideOfElectronAsar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;/Users/user/Downloads/tmp&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<span class="c1">// example usage : copyFileOutsideOfElectronAsar("editor", '/Users/user/Downloads/tmp')</span>
 
-&lt;p&gt;在console中输入app.getPath(“temp”)可获取路径&lt;/p&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="dev" /><category term="game" /><category term="cocos" /><summary type="html">var fs = require(&quot;fs&quot;); var app = require(&quot;electron&quot;).remote.app; // example usage : copyFileOutsideOfElectronAsar(&quot;editor&quot;, '/Users/user/Downloads/tmp') var copyFileOutsideOfElectronAsar = function(sourceInAsarArchive, destOutsideAsarArchive) { if ( fs.existsSync( app.getAppPath() + &quot;/&quot; + sourceInAsarArchive ) ) { // file will be copied if ( fs.statSync( app.getAppPath() + &quot;/&quot; + sourceInAsarArchive ).isFile() ) { fs.writeFileSync(destOutsideAsarArchive, fs.readFileSync( app.getAppPath() + &quot;/&quot; + sourceInAsarArchive )); } // dir is browsed else if ( fs.statSync( app.getAppPath() + &quot;/&quot; + sourceInAsarArchive ).isDirectory() ) { fs.readdirSync( app.getAppPath() + &quot;/&quot; + sourceInAsarArchive ).forEach(function(fileOrFolderName) { fs.existsSync(destOutsideAsarArchive) || fs.mkdirSync(destOutsideAsarArchive); copyFileOutsideOfElectronAsar( sourceInAsarArchive + &quot;/&quot; + fileOrFolderName, destOutsideAsarArchive + &quot;/&quot; + fileOrFolderName ); }); } } } 将此代码复制到cocos creator的console中, 然后执行 copyFileOutsideOfElectronAsar(&quot;&quot;, '/Users/user/Downloads/tmp') 在console中输入app.getPath(“temp”)可获取路径</summary></entry><entry><title type="html">mac os使用nginx配置webdav</title><link href="http://0.0.0.0:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html" rel="alternate" type="text/html" title="mac os使用nginx配置webdav" /><published>2018-05-03T11:58:00+08:00</published><updated>2018-05-03T11:58:00+08:00</updated><id>http://0.0.0.0:4000/other/2018/05/03/mac%20os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html">&lt;ol&gt;
-  &lt;li&gt;使用htpasswd创建用户名密码&lt;/li&gt;
-&lt;/ol&gt;
+<span class="kd">var</span> <span class="nx">copyFileOutsideOfElectronAsar</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sourceInAsarArchive</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if </span><span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nf">existsSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nf">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;htpasswd &lt;span class=&quot;nt&quot;&gt;-bc&lt;/span&gt; .webdav username password
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;!--more--&gt;
-&lt;ol&gt;
-  &lt;li&gt;安装带有webdav module的nginx
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap denji/nginx
-brew &lt;span class=&quot;nb&quot;&gt;unlink &lt;/span&gt;nginx  ［此步骤是因为此前已经安装了nginx］
-brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;nginx-full &lt;span class=&quot;nt&quot;&gt;--with-webdav&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--with-dav-ext-module&lt;/span&gt;
-brew &lt;span class=&quot;nb&quot;&gt;link &lt;/span&gt;nginx-full
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;修改nginx配置文件
+    <span class="c1">// file will be copied</span>
+    <span class="k">if </span><span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nf">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nf">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nf">isFile</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nf">writeFileSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nf">readFileSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nf">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">));</span>
+    <span class="p">}</span>
+    <span class="c1">// dir is browsed</span>
+    <span class="k">else</span> <span class="k">if </span><span class="p">(</span> <span class="nx">fs</span><span class="p">.</span><span class="nf">statSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nf">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nf">isDirectory</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nf">readdirSync</span><span class="p">(</span> <span class="nx">app</span><span class="p">.</span><span class="nf">getAppPath</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">sourceInAsarArchive</span> <span class="p">).</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">fileOrFolderName</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">fs</span><span class="p">.</span><span class="nf">existsSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">)</span> <span class="o">||</span> <span class="nx">fs</span><span class="p">.</span><span class="nf">mkdirSync</span><span class="p">(</span><span class="nx">destOutsideAsarArchive</span><span class="p">);</span>
+           <span class="nf">copyFileOutsideOfElectronAsar</span><span class="p">(</span> <span class="nx">sourceInAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span><span class="p">,</span> <span class="nx">destOutsideAsarArchive</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">fileOrFolderName</span> <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>将此代码复制到cocos creator的console中, 然后执行</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">copyFileOutsideOfElectronAsar</span><span class="p">(</span><span class="dl">""</span><span class="p">,</span> <span class="dl">'</span><span class="s1">/Users/user/Downloads/tmp</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>在console中输入app.getPath(“temp”)可获取路径</p>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="dev" /><category term="game" /><category term="cocos" /><summary type="html"><![CDATA[var fs = require("fs"); var app = require("electron").remote.app; // example usage : copyFileOutsideOfElectronAsar("editor", '/Users/user/Downloads/tmp') var copyFileOutsideOfElectronAsar = function(sourceInAsarArchive, destOutsideAsarArchive) { if ( fs.existsSync( app.getAppPath() + "/" + sourceInAsarArchive ) ) { // file will be copied if ( fs.statSync( app.getAppPath() + "/" + sourceInAsarArchive ).isFile() ) { fs.writeFileSync(destOutsideAsarArchive, fs.readFileSync( app.getAppPath() + "/" + sourceInAsarArchive )); } // dir is browsed else if ( fs.statSync( app.getAppPath() + "/" + sourceInAsarArchive ).isDirectory() ) { fs.readdirSync( app.getAppPath() + "/" + sourceInAsarArchive ).forEach(function(fileOrFolderName) { fs.existsSync(destOutsideAsarArchive) || fs.mkdirSync(destOutsideAsarArchive); copyFileOutsideOfElectronAsar( sourceInAsarArchive + "/" + fileOrFolderName, destOutsideAsarArchive + "/" + fileOrFolderName ); }); } } } 将此代码复制到cocos creator的console中, 然后执行 copyFileOutsideOfElectronAsar("", '/Users/user/Downloads/tmp') 在console中输入app.getPath(“temp”)可获取路径]]></summary></entry><entry><title type="html">mac os使用nginx配置webdav</title><link href="http://0.0.0.0:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html" rel="alternate" type="text/html" title="mac os使用nginx配置webdav" /><published>2018-05-03T11:58:00+00:00</published><updated>2018-05-03T11:58:00+00:00</updated><id>http://0.0.0.0:4000/other/2018/05/03/mac%20os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/05/03/mac-os%E4%BD%BF%E7%94%A8nginx%E9%85%8D%E7%BD%AEwebdav.html"><![CDATA[<ol>
+  <li>使用htpasswd创建用户名密码</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>htpasswd <span class="nt">-bc</span> .webdav username password
+</code></pre></div></div>
+<!--more-->
+<ol>
+  <li>安装带有webdav module的nginx
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew tap denji/nginx
+brew <span class="nb">unlink </span>nginx  ［此步骤是因为此前已经安装了nginx］
+brew <span class="nb">install </span>nginx-full <span class="nt">--with-webdav</span> <span class="nt">--with-dav-ext-module</span>
+brew <span class="nb">link </span>nginx-full
+</code></pre></div>    </div>
+  </li>
+  <li>修改nginx配置文件
   osx上使用brew安装的nginx配置在/usr/local/etc/nginx/nginx.conf
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
  listen 10000;
  error_page 404 /404;
  error_page 503 /503;
@@ -55,153 +80,153 @@ brew &lt;span class=&quot;nb&quot;&gt;link &lt;/span&gt;nginx-full
      dav_ext_methods PROPFIND OPTIONS;
      create_full_put_path on;
      dav_access user:rw group:r all:r;
-     auth_basic &quot;Authorized Users Only&quot;;
+     auth_basic "Authorized Users Only";
      auth_basic_user_file /Users/username/.webdav;
  }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="nginx" /><category term="config" /><category term="osx" /><summary type="html">使用htpasswd创建用户名密码 htpasswd -bc .webdav username password</summary></entry><entry><title type="html">sketch画扇形</title><link href="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html" rel="alternate" type="text/html" title="sketch画扇形" /><published>2018-04-25T09:07:00+08:00</published><updated>2018-04-25T09:07:00+08:00</updated><id>http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html">&lt;ol&gt;
-  &lt;li&gt;画一个正圆&lt;/li&gt;
-  &lt;li&gt;双击进入锚点编辑模式&lt;/li&gt;
-  &lt;li&gt;删除下方锚点, 将其他锚点都设置为Disconneted&lt;/li&gt;
-  &lt;li&gt;将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)&lt;/li&gt;
-  &lt;li&gt;将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)&lt;/li&gt;
-  &lt;li&gt;将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="sketch" /><summary type="html">画一个正圆 双击进入锚点编辑模式 删除下方锚点, 将其他锚点都设置为Disconneted 将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线) 将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线) 将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方</summary></entry><entry><title type="html">通过自定义事件在小程序页面间传值</title><link href="http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html" rel="alternate" type="text/html" title="通过自定义事件在小程序页面间传值" /><published>2018-03-07T16:14:00+08:00</published><updated>2018-03-07T16:14:00+08:00</updated><id>http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html">&lt;ol&gt;
-  &lt;li&gt;创建event.js
-    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nx&quot;&gt;cbArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;!--more--&gt;
-  &lt;/li&gt;
-  &lt;li&gt;父页面添加事件监听方法
-    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// onLoad方法中添加事件监听&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;onLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;customer-event&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// onUnload方法中移除事件监听&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;onUnload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;customer-event&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;子页面中触发事件
-    &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;customer-event&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="weapp" /><category term="node" /><summary type="html">创建event.js let events = {} export default { on (name, self, cb) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.push({self, cb}) } else { events[name] = [{self, cb}] } }, remove (name, self) { let cbArr = events[name] if (Array.isArray(cbArr)) { events[name] = cbArr.filter(({target, cb}) =&amp;gt; { return target !== self }) } }, emit (name, data) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.map(({target, cb}) =&amp;gt; { cb.call(target, data) }) } } }</summary></entry><entry><title type="html">ubuntu16.04安装gitlab(清华镜像)</title><link href="http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html" rel="alternate" type="text/html" title="ubuntu16.04安装gitlab(清华镜像)" /><published>2018-02-27T00:00:00+08:00</published><updated>2018-02-27T00:00:00+08:00</updated><id>http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab</id><content type="html" xml:base="http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html">&lt;ol&gt;
-  &lt;li&gt;安装依赖包，运行如下命令
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install curl openssh-server ca-certificates postfix
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;!--more--&gt;
-  &lt;/li&gt;
-  &lt;li&gt;首先信任 GitLab 的 GPG 公钥:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl https://packages.gitlab.com/gpg.key 2&amp;gt; /dev/null | sudo apt-key add - &amp;amp;&amp;gt;/dev/null
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;添加源
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
+</code></pre></div>    </div>
+  </li>
+</ol>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="nginx" /><category term="config" /><category term="osx" /><summary type="html"><![CDATA[使用htpasswd创建用户名密码 htpasswd -bc .webdav username password]]></summary></entry><entry><title type="html">sketch画扇形</title><link href="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html" rel="alternate" type="text/html" title="sketch画扇形" /><published>2018-04-25T09:07:00+00:00</published><updated>2018-04-25T09:07:00+00:00</updated><id>http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/04/25/sketch%E7%94%BB%E6%89%87%E5%BD%A2.html"><![CDATA[<ol>
+  <li>画一个正圆</li>
+  <li>双击进入锚点编辑模式</li>
+  <li>删除下方锚点, 将其他锚点都设置为Disconneted</li>
+  <li>将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线)</li>
+  <li>将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线)</li>
+  <li>将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方</li>
+</ol>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="sketch" /><summary type="html"><![CDATA[画一个正圆 双击进入锚点编辑模式 删除下方锚点, 将其他锚点都设置为Disconneted 将左下角的锚点(A)的下方控制柄拖到与上方控制柄垂直(正好垂直时, 会出现红线) 将锚点A移动到与其余两个锚点垂直的地方(会出现两条互相垂直的红线) 将上方锚点左边的控制柄, 右下控制柄的下方控制柄拖到与另一个控制柄垂直的地方]]></summary></entry><entry><title type="html">通过自定义事件在小程序页面间传值</title><link href="http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html" rel="alternate" type="text/html" title="通过自定义事件在小程序页面间传值" /><published>2018-03-07T16:14:00+00:00</published><updated>2018-03-07T16:14:00+00:00</updated><id>http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/03/07/%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC.html"><![CDATA[<ol>
+  <li>创建event.js
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">events</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nf">on </span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nf">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">cbArr</span><span class="p">.</span><span class="nf">push</span><span class="p">({</span><span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="nb">self</span><span class="p">,</span> <span class="nx">cb</span><span class="p">}]</span>
+ <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nf">remove </span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nb">self</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nf">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cbArr</span><span class="p">.</span><span class="nf">filter</span><span class="p">(({</span><span class="nx">target</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">target</span> <span class="o">!==</span> <span class="nb">self</span>
+   <span class="p">})</span>
+ <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nf">emit </span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">let</span> <span class="nx">cbArr</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+ <span class="k">if </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nf">isArray</span><span class="p">(</span><span class="nx">cbArr</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">cbArr</span><span class="p">.</span><span class="nf">map</span><span class="p">(({</span><span class="nx">target</span><span class="p">,</span> <span class="nx">cb</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nx">cb</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+   <span class="p">})</span>
+ <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>父页面添加事件监听方法
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">event</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">event</span><span class="dl">'</span>
+<span class="c1">// onLoad方法中添加事件监听</span>
+<span class="nf">onLoad</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+ <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">// onUnload方法中移除事件监听</span>
+<span class="nf">onUnload</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>子页面中触发事件
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">event</span><span class="p">.</span><span class="nf">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">customer-event</span><span class="dl">'</span><span class="p">,</span> <span class="p">{})</span>
+</code></pre></div>    </div>
+  </li>
+</ol>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="weapp" /><category term="node" /><summary type="html"><![CDATA[创建event.js let events = {} export default { on (name, self, cb) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.push({self, cb}) } else { events[name] = [{self, cb}] } }, remove (name, self) { let cbArr = events[name] if (Array.isArray(cbArr)) { events[name] = cbArr.filter(({target, cb}) =&gt; { return target !== self }) } }, emit (name, data) { let cbArr = events[name] if (Array.isArray(cbArr)) { cbArr.map(({target, cb}) =&gt; { cb.call(target, data) }) } } }]]></summary></entry><entry><title type="html">ubuntu16.04安装gitlab(清华镜像)</title><link href="http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html" rel="alternate" type="text/html" title="ubuntu16.04安装gitlab(清华镜像)" /><published>2018-02-27T00:00:00+00:00</published><updated>2018-02-27T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab</id><content type="html" xml:base="http://0.0.0.0:4000/2018/02/27/ubuntu16.04%E5%AE%89%E8%A3%85gitlab.html"><![CDATA[<ol>
+  <li>安装依赖包，运行如下命令
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install curl openssh-server ca-certificates postfix
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>首先信任 GitLab 的 GPG 公钥:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://packages.gitlab.com/gpg.key 2&gt; /dev/null | sudo apt-key add - &amp;&gt;/dev/null
+</code></pre></div>    </div>
+  </li>
+  <li>添加源
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
 #如果提示deb: command not found
 vi /etc/apt/sources.list
 #然后将deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main添加到文件中
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;安装 gitlab-ce:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
+</code></pre></div>    </div>
+  </li>
+  <li>安装 gitlab-ce:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
 sudo apt-get install gitlab-ce
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;安装完成之后启动gitlab.
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl reconfigure
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;打开 sshd 和 postfix 服务
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;service sshd start
+</code></pre></div>    </div>
+  </li>
+  <li>安装完成之后启动gitlab.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl reconfigure
+</code></pre></div>    </div>
+  </li>
+  <li>打开 sshd 和 postfix 服务
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>service sshd start
 service postfix start
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;最后，可通过输入下面的命令，检查GitLab是否安装成功并正常运行。
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl status
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;在浏览器中打开：http://127.0.0.1。
-首次使用时，GitLab会提示设置密码，设置后就可以正常使用了。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;配置域名
+</code></pre></div>    </div>
+  </li>
+  <li>最后，可通过输入下面的命令，检查GitLab是否安装成功并正常运行。
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl status
+</code></pre></div>    </div>
+    <p>在浏览器中打开：http://127.0.0.1。
+首次使用时，GitLab会提示设置密码，设置后就可以正常使用了。</p>
+  </li>
+  <li>配置域名
 编辑 /etc/gitlab/gitlab.rb,
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;external_url &quot;http://gitlab.example.com&quot; #替换为你自己的地址
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;运行如下命令, 使修改生效。&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl reconfigure
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="config" /><category term="git" /><summary type="html">安装依赖包，运行如下命令 sudo apt-get install curl openssh-server ca-certificates postfix</summary></entry><entry><title type="html">使用GitHub Pages 和jekyll写blog</title><link href="http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html" rel="alternate" type="text/html" title="使用GitHub Pages 和jekyll写blog" /><published>2018-02-26T23:24:00+08:00</published><updated>2018-02-26T23:24:00+08:00</updated><id>http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub%20Pages%20%E5%92%8Cjekyll%E5%86%99blog</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html">&lt;ol&gt;
-  &lt;li&gt;在https://github.com/new上create new repository, 名字为 username.github.io&lt;/li&gt;
-  &lt;li&gt;将项目clone到本地
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/username/username.github.io
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;username.github.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;!--more--&gt;
-  &lt;/li&gt;
-  &lt;li&gt;使用jekyll创建本地blog
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#需要安装ruby&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jekyll
-&lt;span class=&quot;c&quot;&gt;#创建基本的项目&lt;/span&gt;
-jekyll new &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#如果目录非空,&lt;/span&gt;
-jekyll new &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--force&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#启动jekyll服务&lt;/span&gt;
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>external_url "http://gitlab.example.com" #替换为你自己的地址
+</code></pre></div>    </div>
+    <p>运行如下命令, 使修改生效。</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gitlab-ctl reconfigure
+</code></pre></div>    </div>
+  </li>
+</ol>]]></content><author><name>Fitchgc</name></author><category term="config" /><category term="git" /><summary type="html"><![CDATA[安装依赖包，运行如下命令 sudo apt-get install curl openssh-server ca-certificates postfix]]></summary></entry><entry><title type="html">使用GitHub Pages 和jekyll写blog</title><link href="http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html" rel="alternate" type="text/html" title="使用GitHub Pages 和jekyll写blog" /><published>2018-02-26T23:24:00+00:00</published><updated>2018-02-26T23:24:00+00:00</updated><id>http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub%20Pages%20%E5%92%8Cjekyll%E5%86%99blog</id><content type="html" xml:base="http://0.0.0.0:4000/other/2018/02/26/%E4%BD%BF%E7%94%A8GitHub-Pages-%E5%92%8Cjekyll%E5%86%99blog.html"><![CDATA[<ol>
+  <li>在https://github.com/new上create new repository, 名字为 username.github.io</li>
+  <li>将项目clone到本地
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/username/username.github.io
+<span class="nb">cd </span>username.github.io
+</code></pre></div>    </div>
+    <!--more-->
+  </li>
+  <li>使用jekyll创建本地blog
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#需要安装ruby</span>
+<span class="nb">sudo </span>gem <span class="nb">install </span>jekyll
+<span class="c">#创建基本的项目</span>
+jekyll new <span class="nb">.</span>
+<span class="c">#如果目录非空,</span>
+jekyll new <span class="nb">.</span> <span class="nt">--force</span>
+<span class="c">#启动jekyll服务</span>
 jekyll serve
-&lt;span class=&quot;c&quot;&gt;#通过http://localhost:4000访问页面&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;jekyll serve启动参数
+<span class="c">#通过http://localhost:4000访问页面</span>
+</code></pre></div>    </div>
+    <p>jekyll serve启动参数
 –livereload 当有改动时候自动刷新页面
 –incremental Incremental will perform a partial build in order to reduce regeneration time.
 –detach 和jekyll serve类似, 但和当前terminal分离, 如果需要关闭服务, 输入kill -9 PID
 –no-watch not watch for changes
-&lt;a href=&quot;https://jekyllrb.com/docs/quickstart/&quot;&gt;jekyll的文档&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown&lt;/li&gt;
-  &lt;li&gt;文件内容如下:
-    &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;blog标题&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;发表日期&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;categories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;other&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+<a href="https://jekyllrb.com/docs/quickstart/">jekyll的文档</a></p>
+  </li>
+  <li>在_posts目录创建文件, 即可创建博客, 文件名格式为YYYY-MM-DD-title.markdown</li>
+  <li>文件内容如下:
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">blog标题"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">发表日期</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">other</span>
+<span class="nn">---</span>
 博客内容, 支持markdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;layout: post 表示使用_layouts下的post模板来显示这篇blog
-categories为分类, 可以使用site.posts.categories这样的标签来引用指定分类的博客&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Fitchgc</name><email>zhlccsh@gmail.com</email></author><category term="git" /><category term="jekyll" /><summary type="html">在https://github.com/new上create new repository, 名字为 username.github.io 将项目clone到本地 git clone https://github.com/username/username.github.io cd username.github.io</summary></entry></feed>
+</code></pre></div>    </div>
+    <p>layout: post 表示使用_layouts下的post模板来显示这篇blog
+categories为分类, 可以使用site.posts.categories这样的标签来引用指定分类的博客</p>
+  </li>
+</ol>]]></content><author><name>Fitchgc</name></author><category term="other" /><category term="git" /><category term="jekyll" /><summary type="html"><![CDATA[在https://github.com/new上create new repository, 名字为 username.github.io 将项目clone到本地 git clone https://github.com/username/username.github.io cd username.github.io]]></summary></entry></feed>

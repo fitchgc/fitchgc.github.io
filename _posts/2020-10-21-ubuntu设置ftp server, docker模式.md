@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title:  "ubuntu设置ftp server, docker模式"
 date: 2020-10-21 14:39
 categories: other

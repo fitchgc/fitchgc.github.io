@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title:  "解压cocos creator代码"
 date: 2020-04-22 17:02
 categories: other

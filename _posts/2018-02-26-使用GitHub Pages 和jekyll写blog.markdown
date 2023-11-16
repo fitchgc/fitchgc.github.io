@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title:  "使用GitHub Pages 和jekyll写blog"
 date: 2018-02-26 23:24
 categories: other
